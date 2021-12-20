@@ -4,3 +4,5 @@ print(sys.path)
 #sys.path.append('/root/data/asj/pyfastqc/src')
 print(sys.path)
 import utilxs
+
+print('ansijing is not hezhen')
