@@ -1,0 +1,2 @@
+# pyfastqc
+fastqc python version
