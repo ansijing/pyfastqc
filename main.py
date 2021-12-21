@@ -1,10 +1,15 @@
-import sys
-print(sys.path)
-#sys.path += ['/root/data/asj/pyfastqc/src']
-#sys.path.append('/root/data/asj/pyfastqc/src')
-print(sys.path)
-#import utilxs
+# -*- coding:utf-8 -*-
+#!/usr/bin/env python
 
-print('ansijing is not hezhen')
-print('ansijing is not hezhen')
-print('ansijing is not 11')
+from src import readfq
+
+if __name__ == '__main__':
+    
+    #step1. count sequence number
+    count = readfq.get_fq_count('data/test.fastq')
+    print('sequence number: ', count)
+    #step2. the sequence length 
+    len_max, len_min = readfq.get_fq_sequence_lengh('data/test.fastq')
+    print('sequence length: ', len_max, len_min )
+    
+    
