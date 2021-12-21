@@ -3,8 +3,8 @@ print(sys.path)
 #sys.path += ['/root/data/asj/pyfastqc/src']
 #sys.path.append('/root/data/asj/pyfastqc/src')
 print(sys.path)
-import utilxs
+#import utilxs
 
 print('ansijing is not hezhen')
 print('ansijing is not hezhen')
-print('ansijing is not hezhen')
+print('ansijing is not 11')

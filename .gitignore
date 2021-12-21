@@ -1,3 +1,4 @@
 data/
 FastQC/
 *.pyc
+__pycache__
