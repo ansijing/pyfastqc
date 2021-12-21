@@ -48,7 +48,7 @@ def get_fq_sequence_lengh(file_path):
         
     seq_len_max = max(seq_len_list)
     seq_len_min = min(seq_len_list)
-    #print("seqmax:", seq_len_max)    
+    print("seqmax:", seq_len_max)    
         
     return seq_len_min, seq_len_max           
  
