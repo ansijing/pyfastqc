@@ -81,8 +81,8 @@ def get_enc_type(file_path):
         
     quali_score_max = max(quali_score_list)
     if quali_score_max <74:
-        Phred_type = 'phred_33'
+        Phred_type = 'phred_33(Illumina 1.8+)'
     else:
-        Phred_type = 'phred_64'
+        Phred_type = 'phred_64(Illumina 1.3+/1.5+)'
     return Phred_type
         
