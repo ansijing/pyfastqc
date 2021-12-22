@@ -17,3 +17,4 @@ if __name__ == '__main__':
     # step4. get GC content
     contant = readfq.get_GC_cont('data/test.fastq')
     print('GC cont: ', contant)
+    

@@ -45,7 +45,7 @@ def get_fq_sequence_lengh(file_path):
                 seq_len_list.append(seq_len)
                 
     #print("seqqq:", seq_len_list)
-        
+    #print("list length: ", len(seq_len_list))    
     seq_len_max = max(seq_len_list)
     seq_len_min = min(seq_len_list)
     print("seqmax:", seq_len_max)    
@@ -99,31 +99,29 @@ def get_GC_cont(file_path):
     else:
         my_open = open
     
-    seq_len_list = []
+    seq_list = []
     with my_open(file_path,'r') as inpf:
         i = -1 
-        num_C = 0
-        num_G = 0
+        num_GC = 0
+        num_all_base = 0
         for line in inpf:
             line = str(line.strip())
-            #print('in loop: line is ', line)
-            i = i + 1
-            #print(' i is: ', i)
-            if i%4 == 1:
-                #print('enter i%4==1, line: ',line)
-                seq_len = len(line)
-                seq_len_list.append(seq_len)
-                #print("line: ", line)
-            for base in line:
-                if base == 'G':
-                    num_G += 1
-                #print("G: ", num_G)
-            for base in line:
-                if base == 'C':
-                    num_C += 1
-                #print("G: ", num_G)            
 
-        num_GC = num_C + num_G
-        cont = int(num_GC / seq_len)   
-        
-    return cont
+            i = i + 1
+
+            if i%4 == 1:
+                seq_list.append(line)
+            seq_list_1 = str(seq_list)
+            for base in seq_list_1:
+                if base == 'G' or base == 'C':
+                    num_GC += 1
+            num_GC_1 = num_GC
+
+            for base in seq_list_1:
+                if base == 'G' or base == 'C' or base == 'A' or base == 'T':
+                    num_all_base += 1
+
+        #print("ALL: ", num_all_base)
+        cont = float(num_GC_1 / num_all_base) 
+        cont_1 = format(cont, '.0%') 
+    return cont_1
