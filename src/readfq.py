@@ -81,8 +81,49 @@ def get_enc_type(file_path):
         
     quali_score_max = max(quali_score_list)
     if quali_score_max <74:
-        Phred_type = 'phred_33(Illumina 1.8+)'
+        Phred_type = 'phred_33 (Illumina 1.8+)'
     else:
-        Phred_type = 'phred_64(Illumina 1.3+/1.5+)'
+        Phred_type = 'phred_64 (Illumina 1.3+/1.5+)'
     return Phred_type
         
+
+def get_GC_cont(file_path): 
+    """get GC content"""
+    if not os.path.exists(file_path):
+        print('file not exists! Please check')
+        return
+    #print('Input file: ', file_path)
+    
+    if file_path.endswith('.gz'):
+        my_open = gzip.open
+    else:
+        my_open = open
+    
+    seq_len_list = []
+    with my_open(file_path,'r') as inpf:
+        i = -1 
+        num_C = 0
+        num_G = 0
+        for line in inpf:
+            line = str(line.strip())
+            #print('in loop: line is ', line)
+            i = i + 1
+            #print(' i is: ', i)
+            if i%4 == 1:
+                #print('enter i%4==1, line: ',line)
+                seq_len = len(line)
+                seq_len_list.append(seq_len)
+                #print("line: ", line)
+            for base in line:
+                if base == 'G':
+                    num_G += 1
+                #print("G: ", num_G)
+            for base in line:
+                if base == 'C':
+                    num_C += 1
+                #print("G: ", num_G)            
+
+        num_GC = num_C + num_G
+        cont = int(num_GC / seq_len)   
+        
+    return cont

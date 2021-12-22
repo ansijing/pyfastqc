@@ -14,3 +14,6 @@ if __name__ == '__main__':
     # step3. estimate the type of phred
     qual_type= readfq.get_enc_type('data/test.fastq')
     print('sequence length: ', qual_type)
+    # step4. get GC content
+    contant = readfq.get_GC_cont('data/test.fastq')
+    print('GC cont: ', contant)
