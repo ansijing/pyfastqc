@@ -125,3 +125,4 @@ def get_GC_cont(file_path):
         cont = float(num_GC_1 / num_all_base) 
         cont_1 = format(cont, '.0%') 
     return cont_1
+
