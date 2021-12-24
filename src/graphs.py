@@ -21,15 +21,51 @@ def qual_box_plot(file_path):
         i = -1 
         for line in inpf:
             line = str(line.strip())
-            #print('in loop: line is ', line)
+            print('in loop: line is ', line)
             i = i + 1
-            #print(' i is: ', i)
+            print(' i is: ', i)
             if i%4 == 3:
                 quali_score_list_1 = list(map(ord, line))
                 quali_score_list = np.array(quali_score_list_1) - 33
+                print(quali_score_list.shape)
 
                 seq_score_list.append(quali_score_list)
                 list_sum = np.array(seq_score_list).sum(0)
+
+        seq_score_list = np.array(seq_score_list)
+        print('seq_score_list shape: ',seq_score_list.shape)
+        A = seq_score_list[:,0:10].T
+        print('A. shape: ',A.shape)
+        B = seq_score_list[:,10:]
+        print('B shape: ', B.shape)
+        step=5
+        C = [B[:,j:j+step].flatten().tolist() for j in range(0,B.shape[1],step)]
+        print('C0 len',len(C[0]))
+        print('C1 len',len(C[1]))
+        print('C2 len',len(C[2]))
+        print('C-2 len',len(C[-2]))
+        print('C-1 len',len(C[-1]))
+        print(C)
+
+        A = A.tolist()
+        D = A + C 
+
+        print(D)
+
+            #step = 5
+            #b = [quali_score_list[j:j+step] for j in range(10,len(quali_score_list),step)]
+            #print('xxx')
+
+            #print(b)
+            #print('xxx')
+            #exit(0)
+            #print(quali_score_list[:10])
+            #exit(0)
+            #b = quali_score_list[:10] + b
+            #for x in b:
+            #    print("xxxxx:", x)
+
+            #print("longggg: ", len(quali_score_list))
     #list_mean =  list_sum // 250   
     #list_median = np.median(seq_score_list, axis = 0)
     #list_10_perc = np.percentile(seq_score_list, 10, axis = 0)
@@ -41,13 +77,16 @@ def qual_box_plot(file_path):
     #df.plot.box(title="hua tu")
     #plt.grid(linestyle="--", alpha=0.3)
     #plt.show()
-    print("seq_score_list" ,seq_score_list[:15])
+    #print("seq_score_list" ,seq_score_list[:15])
     fig = plt.figure()  # 创建画布
     ax = plt.subplot()  # 创建作图区域
     
 
-    
-    g = ax.boxplot(seq_score_list[:40], showfliers = False, showmeans = True, boxprops={'color':'black'}, medianprops={'color':'red'}, meanline = True, widths=0.4, whis=[10, 90], showbox = True)  
+    #plt.rcParams['axes.facecolor']='pink'
+    #g = ax.boxplot(seq_score_list[50:100], showfliers = False, boxprops=dict(facecolor='yellow'), medianprops={'color':'red'}, meanline = True, patch_artist=True,  widths=0.4, whis=[10, 90], showbox = True)  
+    g = ax.boxplot(D, showfliers = False, boxprops=dict(facecolor='yellow'), medianprops={'color':'red'}, meanline = True, patch_artist=True,  widths=0.4, whis=[10, 90], showbox = True)  
+
+    ax.set_facecolor('pink')
     # 修改x轴下标
     #ax.set_xticks([1, 2])
     #ax.set_xticklabels(['first', 'second'])
@@ -55,7 +94,7 @@ def qual_box_plot(file_path):
     plt.grid(axis='y')
     #plt.show()
     plt.savefig('test222.png')
-    return 
+    return  D
                         
     #return list_mean, list_median, list_10_perc, list_25_perc, list_50_perc, list_75_perc, list_90_perc
     #return plt.show()
@@ -88,12 +127,13 @@ def line_chart(file_path):
     #a = np.array(seq_score_list) 
     #print(a.shape)
     list_mean =  list_sum // 250
-    y1 = list_mean[:40]
-    x1 = range(1, 41)
+    y1 = list_mean[50:100]
+    x1 = range(1, 51)
     plt.plot(x1, y1, label = 'mean plot', linewidth = 2, color = 'blue')
     plt.xlabel('position in read')
     plt.ylabel('quality score')
-    plt.title('per base sequence quility')
+    plt.title('per base sequence quality')
+    #plt.rcParams['axes.facecolor']='pink'
     #plt.legend()
     plt.savefig('test111.png')
     return     
