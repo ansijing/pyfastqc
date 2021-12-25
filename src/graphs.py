@@ -34,23 +34,19 @@ def qual_box_plot(file_path):
 
         seq_score_list = np.array(seq_score_list)
         print('seq_score_list shape: ',seq_score_list.shape)
-        A = seq_score_list[:,0:10].T
-        print('A. shape: ',A.shape)
-        B = seq_score_list[:,10:]
-        print('B shape: ', B.shape)
+        seq_score_front = seq_score_list[:,0:10].T
+        #print('seq_score_front. shape: ',seq_score_front.shape)
+        seq_score_behind = seq_score_list[:,10:]
+        #print('seq_score_behind shape: ', seq_score_behind.shape)
         step=5
-        C = [B[:,j:j+step].flatten().tolist() for j in range(0,B.shape[1],step)]
-        print('C0 len',len(C[0]))
-        print('C1 len',len(C[1]))
-        print('C2 len',len(C[2]))
-        print('C-2 len',len(C[-2]))
-        print('C-1 len',len(C[-1]))
-        print(C)
+        seq_score_behind_block = [seq_score_behind[:,j:j+step].flatten().tolist() for j in range(0,seq_score_behind.shape[1],step)]
+        #print('C0 len',len(seq_score_behind_block[0]))
+        #print(seq_score_behind_block)
 
-        A = A.tolist()
-        D = A + C 
+        seq_score_front = seq_score_front.tolist()
+        seq_score = seq_score_front + seq_score_behind_block 
 
-        print(D)
+        print(seq_score)
 
             #step = 5
             #b = [quali_score_list[j:j+step] for j in range(10,len(quali_score_list),step)]
@@ -84,7 +80,7 @@ def qual_box_plot(file_path):
 
     #plt.rcParams['axes.facecolor']='pink'
     #g = ax.boxplot(seq_score_list[50:100], showfliers = False, boxprops=dict(facecolor='yellow'), medianprops={'color':'red'}, meanline = True, patch_artist=True,  widths=0.4, whis=[10, 90], showbox = True)  
-    g = ax.boxplot(D, showfliers = False, boxprops=dict(facecolor='yellow'), medianprops={'color':'red'}, meanline = True, patch_artist=True,  widths=0.4, whis=[10, 90], showbox = True)  
+    g = ax.boxplot(seq_score, showfliers = False, boxprops=dict(facecolor='yellow'), medianprops={'color':'red'}, meanline = True, patch_artist=True,  widths=0.4, whis=[10, 90], showbox = True)  
 
     ax.set_facecolor('pink')
     # 修改x轴下标
@@ -94,7 +90,7 @@ def qual_box_plot(file_path):
     plt.grid(axis='y')
     #plt.show()
     plt.savefig('test222.png')
-    return  D
+    return  seq_score
                         
     #return list_mean, list_median, list_10_perc, list_25_perc, list_50_perc, list_75_perc, list_90_perc
     #return plt.show()
