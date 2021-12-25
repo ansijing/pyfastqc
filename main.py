@@ -4,7 +4,7 @@
 from src import readfq
 from src import graphs
 from src import graph_2
-
+from src import graph_3
 if __name__ == '__main__':
     
     #step1. count sequence number
@@ -26,5 +26,7 @@ if __name__ == '__main__':
 
     ##plot_2 = graphs.line_chart('data/test2.fastq')
 
-    plot_3 = graph_2.seq_qua_scor('data/test2.fastq')
+    ##plot_3 = graph_2.seq_qua_scor('data/test2.fastq')
+
+    plot_4 = graph_3.get_base_cont('data/test2.fastq')
     
