@@ -3,6 +3,7 @@
 
 from src import readfq
 from src import graphs
+from src import graph_2
 
 if __name__ == '__main__':
     
@@ -21,7 +22,9 @@ if __name__ == '__main__':
     
     #step5. box plot of per base sequence quality
     #plot_1, plot_2, plot_3, plot_4, plot_5, plot_6, plot_7 = graphs.qual_box_plot('data/test.fastq')
-    plot_1 = graphs.qual_box_plot('data/test2.fastq')
+    ##plot_1 = graphs.qual_box_plot('data/test2.fastq')
 
-    plot_2 = graphs.line_chart('data/test2.fastq')
+    ##plot_2 = graphs.line_chart('data/test2.fastq')
+
+    plot_3 = graph_2.seq_qua_scor('data/test2.fastq')
     

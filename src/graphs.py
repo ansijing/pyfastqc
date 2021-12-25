@@ -3,6 +3,7 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+import collections
 def qual_box_plot(file_path): 
     """Box plot of per base sequence quality """
     if not os.path.exists(file_path):
@@ -17,23 +18,24 @@ def qual_box_plot(file_path):
         
     quali_score_list = []
     seq_score_list = []
+    phred = 33
     with my_open(file_path,'rb') as inpf:
         i = -1 
         for line in inpf:
             line = str(line.strip())
-            print('in loop: line is ', line)
+            #print('in loop: line is ', line)
             i = i + 1
-            print(' i is: ', i)
+            #print(' i is: ', i)
             if i%4 == 3:
                 quali_score_list_1 = list(map(ord, line))
-                quali_score_list = np.array(quali_score_list_1) - 33
-                print(quali_score_list.shape)
+                quali_score_list = np.array(quali_score_list_1) - phred
+                #print(quali_score_list.shape)
 
                 seq_score_list.append(quali_score_list)
-                list_sum = np.array(seq_score_list).sum(0)
+                #list_sum = np.array(seq_score_list).sum(0)
 
         seq_score_list = np.array(seq_score_list)
-        print('seq_score_list shape: ',seq_score_list.shape)
+        #print('seq_score_list shape: ',seq_score_list.shape)
         seq_score_front = seq_score_list[:,0:10].T
         #print('seq_score_front. shape: ',seq_score_front.shape)
         seq_score_behind = seq_score_list[:,10:]
@@ -46,7 +48,7 @@ def qual_box_plot(file_path):
         seq_score_front = seq_score_front.tolist()
         seq_score = seq_score_front + seq_score_behind_block 
 
-        print(seq_score)
+        #print(seq_score)
 
             #step = 5
             #b = [quali_score_list[j:j+step] for j in range(10,len(quali_score_list),step)]
@@ -120,6 +122,7 @@ def line_chart(file_path):
 
                 seq_score_list.append(quali_score_list)
                 list_sum = np.array(seq_score_list).sum(0)
+                
     #a = np.array(seq_score_list) 
     #print(a.shape)
     list_mean =  list_sum // 250
@@ -133,5 +136,13 @@ def line_chart(file_path):
     #plt.legend()
     plt.savefig('test111.png')
     return     
+
+
+  
+
+
+
+
+
 
     
