@@ -2,9 +2,9 @@
 #!/usr/bin/env python
 
 from src import readfq
-from src import graphs
-from src import graph_2
-from src import graph_3
+from src import graph_per_bas_seq_qua
+from src import graph_per_seq_qua_sco
+from src import graph_per_bas_seq_con
 if __name__ == '__main__':
     
     #step1. count sequence number
@@ -22,11 +22,11 @@ if __name__ == '__main__':
     
     #step5. box plot of per base sequence quality
     #plot_1, plot_2, plot_3, plot_4, plot_5, plot_6, plot_7 = graphs.qual_box_plot('data/test.fastq')
-    ##plot_1 = graphs.qual_box_plot('data/test2.fastq')
+    #plot_1 = graph_per_bas_seq_qua.qual_box_plot('data/test2.fastq')
 
-    ##plot_2 = graphs.line_chart('data/test2.fastq')
+    #plot_2 = graph_per_bas_seq_qua.line_chart('data/test2.fastq')
 
-    ##plot_3 = graph_2.seq_qua_scor('data/test2.fastq')
+    plot_3 = graph_per_seq_qua_sco.seq_qua_scor('data/test2.fastq')
 
-    plot_4 = graph_3.get_base_cont('data/test2.fastq')
+    #plot_4 = graph_per_bas_seq_con.get_base_cont('data/test2.fastq')
     
