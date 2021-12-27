@@ -5,6 +5,8 @@ from src import readfq
 from src import graph_per_bas_seq_qua
 from src import graph_per_seq_qua_sco
 from src import graph_per_bas_seq_con
+from src import per_seq_GC_con
+from src import per_base_N_con
 if __name__ == '__main__':
     
     #step1. count sequence number
@@ -26,7 +28,9 @@ if __name__ == '__main__':
 
     #plot_2 = graph_per_bas_seq_qua.line_chart('data/test2.fastq')
 
-    plot_3 = graph_per_seq_qua_sco.seq_qua_scor('data/test2.fastq')
+    #plot_3 = graph_per_seq_qua_sco.seq_qua_scor('data/test2.fastq')
 
     #plot_4 = graph_per_bas_seq_con.get_base_cont('data/test2.fastq')
+    #plot_5 = per_seq_GC_con.per_seq_GC('data/test2.fastq')
+    plot_6 = per_base_N_con.per_bas_N('data/test2.fastq')
     

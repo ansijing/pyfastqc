@@ -21,6 +21,7 @@ def get_base_cont(file_path):
     seq_list = []
     with my_open(file_path,'r') as inpf:
         i = -1 
+        h = 0 
         num_G = 0
         #num_all_base = 0
         j = 0
@@ -37,20 +38,67 @@ def get_base_cont(file_path):
         
             if i%4 == 1:
                 seq_list.append(line)
+        print("1111:", len(seq_list))
+        for read in seq_list:
+            for base in read:
+                h = h + 1
+                
+                if base == 'G':
+                    num_G += 1
+                num_G_1 = num_G
+                #print("base: ", base)
+                #print("hhhh:", h)
+        print("GGGG: ", num_G_1)
+
             #seq_list_1 = str(seq_list)
+        #print(seq_list[2])
             #for base in seq_list:
             #    if base == 'G':
             #        num_G += 1
             #num_G_1 = num_G
-            j = j +1
-            for j in seq_list[0]:
-                if seq_list[0] == 'G':
-                    num_G += 1
-            num_G_1 = num_G
+    return
 
-        print("G1: ", num_G_1)
+    
+    ##    base_G = []
+    ##    for read in seq_list:
+            #j = j + 1
+            #seq_list_j = read 
+            #print("j: ", j)
+            #print("base_j: ", base[j] ) 
+            #print("itis j:", len(seq_list_j)) 
+            
+            #print("hhhh: ", h)
+            #base_1 = list(read[j])
+            #base_G.append(read[j])
+            #print("gigigigi: ", read)
+            
+            #print("readh", read[h])
+    ##        for base in read[250]:
+    ##            h = h + 1
+    ##            if base == 'G':
+    ##                num_G += 1
+    ##            num_G_1 = num_G
+                #print("base: ", base)
+                #print("hhhh:", h)
+    ##    print("GGGG: ", num_G_1)
+
+
+
+        #if  base_G[h] == 'G':
+        #    num_G += 1
+        #num_G_1 = num_G
+        #print("GGGG: ", num_G_1)
+            #for base_G in seq_list_j[h]:
+
+            
+            #    if base_G == 'G':        
+             #       num_G += 1
+            #num_G_1 = num_G
+            #print("j: ", j)
+
+        #print("G1: ", num_G_1)
         #cont = float(num_G_1 / 250) 
         #cont_1 = format(cont, '.0%')
         #print("counttt:", cont_1) 
-        plt.savefig('graph_per_bas_seq_con.png')
+        #plt.savefig('graph_per_bas_seq_con.png')
     return 
