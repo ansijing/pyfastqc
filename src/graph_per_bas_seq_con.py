@@ -36,6 +36,7 @@ def get_base_cont(file_path):
             if i%4 == 1:
                 seq_list.append(line)
         print("1111:", len(seq_list))
+        dict_2d = {{'base': {'A': 0, 'T': 0, 'C': 0, 'G': 0}, 'position': {'1': 0, '2': 0, '3': 0, '4': 0, '5': 0}}}
         for read in seq_list:
             for base in read:
                 h = h + 1
